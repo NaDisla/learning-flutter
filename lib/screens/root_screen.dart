@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:learning_flutter/screens/learn_flutter_screen.dart';
+import 'package:learning_flutter/screens/screens.dart';
 
 class RootScreen extends StatefulWidget {
   const RootScreen({Key? key}) : super(key: key);
@@ -10,24 +10,14 @@ class RootScreen extends StatefulWidget {
 
 class _RootScreenState extends State<RootScreen> {
   int currentPage = 0;
+  List<Widget> screens = const [HomeScreen(), ProfileScreen()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Flutter'),
       ),
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) => const LearnFlutterScreen(),
-              ),
-            );
-          },
-          child: const Text('Learn Flutter'),
-        ),
-      ),
+      body: screens[currentPage],
       floatingActionButton: FloatingActionButton(
         onPressed: () => debugPrint('Floating Action Button'),
         child: const Icon(Icons.add),
